@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".addMenteeActivity"></activity>
+        <activity android:name=".menteeInfoActivity"></activity>
+        <activity android:name=".addMenteeActivity" />
         <activity android:name=".getMenteeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

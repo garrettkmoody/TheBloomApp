@@ -8,57 +8,37 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/logo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:background="#ffee82ee"
-        android:fontFamily="sans-serif-smallcaps"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:text="The Bloom App"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageButton
         android:id="@+id/getMentees"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="70dp"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:onClick="taptofade1"
         android:background="@drawable/rounded_button"
+        android:onClick="taptofade1"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/addMentee"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:srcCompat="@drawable/mentee" />
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:srcCompat="@drawable/tree" />
 
     <ImageButton
         android:id="@+id/addMentee"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
-        android:scaleType="fitCenter"
-        android:background="@drawable/rounded_button"
         android:adjustViewBounds="true"
+        android:background="@drawable/rounded_button"
         android:onClick="taptofade"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@+id/getMentees"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:srcCompat="@drawable/plus" />
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:srcCompat="@drawable/leaf" />
 
     <TextView
         android:id="@+id/textView2"
@@ -80,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginRight="14dp"
+        android:layout_marginRight="17dp"
         android:textStyle="bold"
         android:text="Mentees"
         android:textSize="17dp"
@@ -97,6 +77,19 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/thebloomlogo"
+        android:adjustViewBounds="true"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="139dp"
+        tools:layout_editor_absoluteY="350dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
