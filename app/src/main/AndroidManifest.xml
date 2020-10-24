@@ -9,16 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".menteeInfoActivity"></activity>
-        <activity android:name=".addMenteeActivity" />
-        <activity android:name=".getMenteeActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".RegistrationActivity"></activity>
+        <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+             </intent-filter>
         </activity>
+        <activity android:name=".menteeInfoActivity" />
+        <activity android:name=".addMenteeActivity" />
+        <activity android:name=".getMenteeActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
