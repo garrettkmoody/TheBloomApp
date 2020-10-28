@@ -16,6 +16,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button Login;
     private TextView NewUser;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         Password = (EditText) findViewById(R.id.loginPassword);
         Login = (Button) findViewById(R.id.btlogin);
         NewUser = (TextView) findViewById(R.id.tvNewUser);
+
 
         NewUser.setOnClickListener(new View.OnClickListener() {
             @Override

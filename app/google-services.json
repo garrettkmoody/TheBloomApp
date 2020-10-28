@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "223646121659",
+    "firebase_url": "https://thebloomapp-a5c39.firebaseio.com",
+    "project_id": "thebloomapp-a5c39",
+    "storage_bucket": "thebloomapp-a5c39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223646121659:android:d602498c24cb5c1666339e",
+        "android_client_info": {
+          "package_name": "com.example.thebloomapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223646121659-qnjgim2oos248i4p2el7h25dpunlvb4i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlL0ku3ieIDFbwBxh1HcIaJJ_PFmOCi8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223646121659-qnjgim2oos248i4p2el7h25dpunlvb4i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
