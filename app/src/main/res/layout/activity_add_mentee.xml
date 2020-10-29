@@ -16,7 +16,7 @@
         android:textStyle="bold"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

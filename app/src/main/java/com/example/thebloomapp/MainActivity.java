@@ -14,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -26,11 +28,15 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private ImageButton button;
     private ImageButton button1;
+    private Button logoutbtn;
+    private Button editProfile;
+    private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadData();
+        firebaseAuth = FirebaseAuth.getInstance();
         button1 = (ImageButton) findViewById(R.id.addMentee);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,10 +45,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         button = (ImageButton) findViewById(R.id.getMentees);
+        editProfile = (Button) findViewById(R.id.btnEditProfile);
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openGetMenteeActivity();
+            }
+        });
+        logoutbtn = (Button) findViewById(R.id.btnlogout);
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseAuth.signOut();
+                finish();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
 
