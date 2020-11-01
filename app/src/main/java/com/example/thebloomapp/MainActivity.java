@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openAddMenteeActivity() {
-        Intent intent = new Intent(this,addMenteeActivity.class);
+        Intent intent = new Intent(this,searchMenteeActivity.class);
         startActivity(intent);
     }
 

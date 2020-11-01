@@ -36,7 +36,7 @@ public class addMenteeActivity extends AppCompatActivity {
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {                //When button clicked, saves data to shared preferences and adds to Singleton array
                 name = nameInput.getText().toString();
                 year = yearInput.getText().toString();
                 birthday = birthdayInput.getText().toString();
@@ -46,7 +46,7 @@ public class addMenteeActivity extends AppCompatActivity {
         });
     }
 
-    private void saveData() {
+    private void saveData() {                                 //Saves Mentee info to shared Preferences
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();

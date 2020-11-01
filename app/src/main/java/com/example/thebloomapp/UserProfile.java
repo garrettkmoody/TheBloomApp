@@ -1,37 +1,41 @@
 package com.example.thebloomapp;
 
 public class UserProfile {
-    public String Name;
-    public String Email;
-    public String Age;
+    private String name;
+    private String email;
+    private String age;
 
-    public String getName() {
-        return Name;
+    public UserProfile() {
     }
 
     public void setName(String name) {
-        Name = name;
-    }
-
-    public String getEmail() {
-        return Email;
+        this.name = name;
     }
 
     public void setEmail(String email) {
-        Email = email;
-    }
-
-    public String getAge() {
-        return Age;
+        this.email = email;
     }
 
     public void setAge(String age) {
-        Age = age;
+        this.age = age;
     }
 
-    public UserProfile(String name, String email, String age) {
-        Name = name;
-        Email = email;
-        Age = age;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public UserProfile(String Name, String Email, String Age) {
+        this.name = Name;
+        this.email = Email;
+        this.age = Age;
     }
 }
