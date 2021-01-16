@@ -83,7 +83,7 @@ public class ProfileActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private static int PICK_IMAGE = 123;
     Uri imagePath;
-    String profileLink;
+    String profileLinker;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -119,7 +119,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).fit().centerCrop().transform(new CircleTransform()).into(profilePic);
-                profileLink = String.valueOf(uri);
+                profileLinker = String.valueOf(uri);
             }
         });
 
@@ -187,7 +187,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             });
         }
-        myRef.setValue(new UserProfile(Name.getText().toString(), Email.getText().toString(), Age.getText().toString(), profileLink));
+        myRef.setValue(new UserProfile(Name.getText().toString(), Email.getText().toString(), Age.getText().toString(), profileLinker));
         Toast.makeText(ProfileActivity.this, "Successful!", Toast.LENGTH_SHORT).show();
     }
 }
