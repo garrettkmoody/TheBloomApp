@@ -142,6 +142,7 @@ public class ProfileActivity extends AppCompatActivity {
                 } else {
                     sendUserData();
                     startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                    finish();
                 }
             }
 
@@ -174,7 +175,18 @@ public class ProfileActivity extends AppCompatActivity {
         StorageReference imageRef = storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic");
 
         if(imagePath != null) {
+
             UploadTask uploadTask = imageRef.putFile(imagePath);
+
+            storageReference.child(firebaseAuth.getUid()).child("Images/Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    profileLinker = String.valueOf(uri);
+                }
+            });
+
+
+
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
