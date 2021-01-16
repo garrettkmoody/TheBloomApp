@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -69,7 +71,7 @@ public class searchMenteeActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull UsersViewHolder holder, int position, @NonNull UserProfile model) {
 
-                holder.setDetails(model.getName(), model.getAge(), model.getEmail());
+                holder.setDetails(model.getName(), model.getAge(), model.getLink());
 
             }
 
@@ -104,7 +106,8 @@ public class searchMenteeActivity extends AppCompatActivity {
 
             user_name.setText(userName);
             user_bio.setText(bio);
-            //Will add image link here
+            if(img != null) {
+            Picasso.get().load(img).fit().centerCrop().transform(new CircleTransform()).into(profilePic); }
         }
     }
 }
