@@ -19,8 +19,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -171,9 +173,9 @@ public class ProfileActivity extends AppCompatActivity {
     }
     private void sendUserData() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
+        final DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
         StorageReference imageRef = storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic");
-
+        myRef.setValue(new UserProfile(Name.getText().toString(), Email.getText().toString(), Age.getText().toString(), profileLinker));
         if(imagePath != null) {
 
             UploadTask uploadTask = imageRef.putFile(imagePath);
@@ -191,12 +193,14 @@ public class ProfileActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             profileLinker = String.valueOf(uri);
+                            myRef.setValue(new UserProfile(Name.getText().toString(), Email.getText().toString(), Age.getText().toString(), profileLinker));
                         }
                     });
                 }
             });
         }
-        myRef.setValue(new UserProfile(Name.getText().toString(), Email.getText().toString(), Age.getText().toString(), profileLinker));
+
+
         Toast.makeText(ProfileActivity.this, "Successful!", Toast.LENGTH_SHORT).show();
     }
 }

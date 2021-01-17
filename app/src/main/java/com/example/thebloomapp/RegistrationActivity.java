@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -90,6 +92,11 @@ public class RegistrationActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()) {
                         Toast.makeText(RegistrationActivity.this, "Successfully Registered, Verification email sent", Toast.LENGTH_SHORT).show();
+                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
+                        UserProfile tempUser = new UserProfile();
+                        tempUser.setEmail(userEmail.getText().toString().trim());
+                        myRef.setValue(tempUser);
                         firebaseAuth.signOut();
                         finish();
                         startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
