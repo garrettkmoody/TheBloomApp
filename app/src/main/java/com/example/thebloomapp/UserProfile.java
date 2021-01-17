@@ -6,6 +6,7 @@ public class UserProfile {
     private String email;
     private String age;
     private String link;
+    //private String bio = "drum";
 
     public UserProfile() {
     }
@@ -24,6 +25,8 @@ public class UserProfile {
 
     public void setLink(String link) { this.link = link; }
 
+    //public void setBio(String bio) { this.bio = bio; }
+
     public String getName() {
         return name;
     }
@@ -37,6 +40,8 @@ public class UserProfile {
     }
 
     public String getLink() { return link; }
+
+    //public String getBio() { return bio; }
 
     public UserProfile(String Name, String Email, String Age, String Link) {
         this.name = Name;

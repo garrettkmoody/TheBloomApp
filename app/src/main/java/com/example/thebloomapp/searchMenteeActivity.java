@@ -103,10 +103,11 @@ public class searchMenteeActivity extends AppCompatActivity {
             TextView user_name = mView.findViewById(R.id.tvListName);
             TextView user_bio = mView.findViewById(R.id.tvBio);
             ImageView profilePic = mView.findViewById(R.id.ivProfilePic);
-
+            profilePic.setImageResource(0);
+            profilePic.setImageDrawable(getResources().getDrawable(R.drawable.mentee));
             user_name.setText(userName);
             user_bio.setText(bio);
-            if(img != null) {
+            if(img != null && !img.equals("")) {
             Picasso.get().load(img).fit().centerCrop().transform(new CircleTransform()).into(profilePic); }
         }
     }

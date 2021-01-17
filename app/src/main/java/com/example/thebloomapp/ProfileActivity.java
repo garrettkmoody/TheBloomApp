@@ -141,8 +141,8 @@ public class ProfileActivity extends AppCompatActivity {
                     Toast.makeText(ProfileActivity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
                 } else {
                     sendUserData();
-                    startActivity(new Intent(ProfileActivity.this, MainActivity.class));
                     finish();
+                    startActivity(new Intent(ProfileActivity.this, MainActivity.class));
                 }
             }
 
@@ -178,15 +178,6 @@ public class ProfileActivity extends AppCompatActivity {
 
             UploadTask uploadTask = imageRef.putFile(imagePath);
 
-            storageReference.child(firebaseAuth.getUid()).child("Images/Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    profileLinker = String.valueOf(uri);
-                }
-            });
-
-
-
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
@@ -196,6 +187,12 @@ public class ProfileActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Toast.makeText(ProfileActivity.this, "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                    storageReference.child(firebaseAuth.getUid()).child("Images/Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            profileLinker = String.valueOf(uri);
+                        }
+                    });
                 }
             });
         }
