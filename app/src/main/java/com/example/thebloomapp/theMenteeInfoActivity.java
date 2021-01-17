@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,12 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         uid = intent.getStringExtra("uid");
         final ImageView profile = findViewById(R.id.menteeProfile);
         final TextView name = findViewById(R.id.menteeInfoName);
+        Spinner services = findViewById(R.id.serviceSpin);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.services, R.layout.spinner_item);
+        adapter.setDropDownViewResource(R.layout.inspinner);
+        services.setAdapter(adapter);
+
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference(uid);
         databaseReference.addValueEventListener(new ValueEventListener() {

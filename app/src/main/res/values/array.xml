@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="services">
+        <item>SAT Prep</item>
+        <item>Math Instruction</item>
+        <item>English Instruction</item>
+        <item>College Application Coaching</item>
+        <item>Education Coaching</item>
+        <item>Life Coaching</item>
+        <item>Career Coaching</item>
+        <item>GAP YEAR</item>
+        <item>Camp</item>
+    </string-array>
+
+</resources>
