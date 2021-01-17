@@ -96,6 +96,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
                         UserProfile tempUser = new UserProfile();
                         tempUser.setEmail(userEmail.getText().toString().trim());
+                        tempUser.setUid(firebaseAuth.getUid());
                         myRef.setValue(tempUser);
                         firebaseAuth.signOut();
                         finish();

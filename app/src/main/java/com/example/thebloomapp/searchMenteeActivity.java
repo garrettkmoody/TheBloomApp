@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -69,10 +70,18 @@ public class searchMenteeActivity extends AppCompatActivity {
 
         FirebaseRecyclerAdapter firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<UserProfile, UsersViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull UsersViewHolder holder, int position, @NonNull UserProfile model) {
+            protected void onBindViewHolder(@NonNull UsersViewHolder holder, int position, @NonNull final UserProfile model) {
 
                 holder.setDetails(model.getName(), model.getAge(), model.getLink());
 
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        Intent intent = new Intent(searchMenteeActivity.this, theMenteeInfo.class);
+//                        intent.putExtra("uid", model.getUid());
+//                        startActivity(intent);
+                    }
+                });
             }
 
             @NonNull
@@ -84,7 +93,6 @@ public class searchMenteeActivity extends AppCompatActivity {
         };
         firebaseRecyclerAdapter.startListening();
         rvMenteeList.setAdapter(firebaseRecyclerAdapter);
-
     }
 
     //View Holder Class
@@ -92,7 +100,7 @@ public class searchMenteeActivity extends AppCompatActivity {
 
         View mView;
 
-        public UsersViewHolder(@NonNull View itemView) {
+        public UsersViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             mView = itemView;
@@ -110,7 +118,11 @@ public class searchMenteeActivity extends AppCompatActivity {
             if(img != null && !img.equals("")) {
             Picasso.get().load(img).fit().centerCrop().transform(new CircleTransform()).into(profilePic); }
         }
+
+
     }
+
+
 }
 
 

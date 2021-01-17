@@ -36,6 +36,8 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 class CircleTransform implements Transformation {
     @Override
@@ -175,7 +177,12 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
         StorageReference imageRef = storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic");
-        myRef.setValue(new UserProfile(Name.getText().toString(), Email.getText().toString(), Age.getText().toString(), profileLinker));
+        Map<String, Object> update1 = new HashMap<>();
+        update1.put("name", Name.getText().toString());
+        update1.put("email", Email.getText().toString());
+        update1.put("age", Age.getText().toString());
+        update1.put("link", profileLinker);
+        myRef.updateChildren(update1);
         if(imagePath != null) {
 
             UploadTask uploadTask = imageRef.putFile(imagePath);
@@ -193,7 +200,12 @@ public class ProfileActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             profileLinker = String.valueOf(uri);
-                            myRef.setValue(new UserProfile(Name.getText().toString(), Email.getText().toString(), Age.getText().toString(), profileLinker));
+                            Map<String, Object> update = new HashMap<>();
+                            update.put("name", Name.getText().toString());
+                            update.put("email", Email.getText().toString());
+                            update.put("age", Age.getText().toString());
+                            update.put("link", profileLinker);
+                            myRef.updateChildren(update);
                         }
                     });
                 }

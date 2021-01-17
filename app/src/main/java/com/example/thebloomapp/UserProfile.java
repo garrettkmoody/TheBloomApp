@@ -6,7 +6,7 @@ public class UserProfile {
     private String email;
     private String age;
     private String link;
-    //private String bio = "drum";
+    private String uid;
 
     public UserProfile() {
     }
@@ -25,7 +25,7 @@ public class UserProfile {
 
     public void setLink(String link) { this.link = link; }
 
-    //public void setBio(String bio) { this.bio = bio; }
+    public void setUid(String uid) { this.uid = uid; }
 
     public String getName() {
         return name;
@@ -41,7 +41,7 @@ public class UserProfile {
 
     public String getLink() { return link; }
 
-    //public String getBio() { return bio; }
+    public String getUid() { return uid; }
 
     public UserProfile(String Name, String Email, String Age, String Link) {
         this.name = Name;
