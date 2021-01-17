@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".searchMenteeActivity"></activity>
+        <activity android:name=".theMenteeInfo"></activity>
+        <activity android:name=".searchMenteeActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ForgotPassActivity" />
         <activity android:name=".RegistrationActivity" />
