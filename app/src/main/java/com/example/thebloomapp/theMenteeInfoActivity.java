@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class theMenteeInfo extends AppCompatActivity {
+public class theMenteeInfoActivity extends AppCompatActivity {
 String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ String uid;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(theMenteeInfo.this, uid, Toast.LENGTH_SHORT).show();
+                Toast.makeText(theMenteeInfoActivity.this, uid, Toast.LENGTH_SHORT).show();
             }
         });
     }
