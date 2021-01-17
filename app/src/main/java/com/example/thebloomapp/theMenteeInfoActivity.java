@@ -1,5 +1,6 @@
 package com.example.thebloomapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,8 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class theMenteeInfoActivity extends AppCompatActivity {
-String uid;
+    String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,10 +28,27 @@ String uid;
         uid = intent.getStringExtra("uid");
         Button button = findViewById(R.id.menteeInfoButton);
 
+        final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(theMenteeInfoActivity.this, uid, Toast.LENGTH_SHORT).show();
+                final DatabaseReference myRef = firebaseDatabase.getReference(uid);
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        System.out.println(snapshot.getValue(UserProfile.class).getName());
+                        Map<String, Object> update = new HashMap<>();
+                        update.put("name", "Billy Tow");
+                        myRef.updateChildren(update);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(theMenteeInfoActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
