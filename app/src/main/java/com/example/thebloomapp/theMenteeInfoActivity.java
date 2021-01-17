@@ -38,10 +38,8 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        System.out.println(snapshot.getValue(UserProfile.class).getName());
-                        Map<String, Object> update = new HashMap<>();
-                        update.put("name", "Billy Tow");
-                        myRef.updateChildren(update);
+                        if(snapshot.exists()) {
+                        System.out.println(snapshot.getValue(UserProfile.class).getName()); }
                     }
 
                     @Override
@@ -49,6 +47,11 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                         Toast.makeText(theMenteeInfoActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+                Map<String, Object> update = new HashMap<>();
+                update.put("name", "Billy Tow");
+                myRef.updateChildren(update);
+                finish();
+                startActivity(new Intent(theMenteeInfoActivity.this, MainActivity.class));
             }
         });
     }

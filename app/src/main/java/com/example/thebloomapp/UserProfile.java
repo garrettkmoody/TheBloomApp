@@ -1,12 +1,16 @@
 package com.example.thebloomapp;
 
 
+import java.util.Vector;
+
 public class UserProfile {
     private String name;
     private String email;
     private String age;
     private String link;
     private String uid;
+    private String dob;
+
 
     public UserProfile() {
     }
@@ -27,6 +31,8 @@ public class UserProfile {
 
     public void setUid(String uid) { this.uid = uid; }
 
+    public void setDob(String dob) { this.dob = dob; }
+
     public String getName() {
         return name;
     }
@@ -42,6 +48,8 @@ public class UserProfile {
     public String getLink() { return link; }
 
     public String getUid() { return uid; }
+
+    public String getDob() { return dob; }
 
     public UserProfile(String Name, String Email, String Age, String Link) {
         this.name = Name;
