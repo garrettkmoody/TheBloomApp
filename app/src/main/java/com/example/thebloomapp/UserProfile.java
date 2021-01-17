@@ -1,6 +1,8 @@
 package com.example.thebloomapp;
 
 
+import android.widget.ScrollView;
+
 import java.util.Vector;
 
 public class UserProfile {
@@ -10,6 +12,8 @@ public class UserProfile {
     private String link;
     private String uid;
     private String dob;
+    private String establishment;
+    private String service;
 
 
     public UserProfile() {
@@ -33,6 +37,10 @@ public class UserProfile {
 
     public void setDob(String dob) { this.dob = dob; }
 
+    public void setEstablishment(String establishment) { this.establishment = establishment; }
+
+    public void setService(String service) { this.service = service; }
+
     public String getName() {
         return name;
     }
@@ -50,6 +58,10 @@ public class UserProfile {
     public String getUid() { return uid; }
 
     public String getDob() { return dob; }
+
+    public String getEstablishment() { return establishment; }
+
+    public String getService() { return service; }
 
     public UserProfile(String Name, String Email, String Age, String Link) {
         this.name = Name;
