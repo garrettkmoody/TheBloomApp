@@ -52,6 +52,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         final TextView name = findViewById(R.id.menteeInfoName);
         final EditText establishment = findViewById(R.id.etEstablish);
         final Spinner services = findViewById(R.id.serviceSpin);
+        final TextView establishmentTV = findViewById(R.id.hiddenTV);
         ExpandableListView expandableListView = findViewById(R.id.expandListView);
         listGroup = new ArrayList<>();
         listItem = new HashMap<>();
@@ -59,7 +60,19 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         expandableListView.setAdapter(adapter);
         initListData();
         Button saveInfo = findViewById(R.id.saveMenteeInfoBT);
-
+        Button editInfo = findViewById(R.id.pencilBT);
+        editInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(establishment.getVisibility() == EditText.INVISIBLE) {
+                    establishmentTV.setVisibility(TextView.INVISIBLE);
+                    establishment.setVisibility(EditText.VISIBLE);
+                } else {
+                    establishmentTV.setVisibility(TextView.VISIBLE);
+                    establishment.setVisibility(EditText.INVISIBLE);
+                }
+            }
+        });
 
         saveInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +100,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                     Picasso.get().load(tempProfile.getLink()).fit().centerCrop().transform(new CircleTransform()).into(profile);
                     name.setText(tempProfile.getName());
                     establishment.setText(tempProfile.getEstablishment());
+                    establishmentTV.setText(tempProfile.getEstablishment());
                     String[] serviceArr = getResources().getStringArray(R.array.services);
                     for(int i = 0;  i < serviceArr.length; i++) {
                         if(serviceArr[i].equals(tempProfile.getService())) {
