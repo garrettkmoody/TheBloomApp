@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
     String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_the_mentee_info);
         Intent intent = getIntent();
@@ -48,7 +50,6 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                 Map<String, Object> update = new HashMap<>();
                 update.put("establishment", establishment.getText().toString().trim());
                 update.put("service", services.getSelectedItem());
-                System.out.println(services.getPrompt());
                 myRef.updateChildren(update);
             }
         });
