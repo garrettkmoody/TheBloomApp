@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -62,7 +65,7 @@ public class MainAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+    public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         String group = (String) getGroup(groupPosition);
         if(convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -73,6 +76,34 @@ public class MainAdapter extends BaseExpandableListAdapter {
         } else {
             convertView.findViewById(R.id.deleteBT).setVisibility(Button.VISIBLE);
         }
+        final View finalConvertView = convertView;
+        convertView.findViewById(R.id.deleteBT).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                theMenteeInfoActivity.listGroup.remove(groupPosition);
+                Animation shake = AnimationUtils.loadAnimation(finalConvertView.getContext(), R.anim.fade);
+                finalConvertView.startAnimation(shake);
+                shake.setAnimationListener(new Animation.AnimationListener() {
+
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        theMenteeInfoActivity.adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+
+                });
+
+            }
+        });
         TextView textView = convertView.findViewById(R.id.list_parent);
         textView.setText(group);
         return convertView;

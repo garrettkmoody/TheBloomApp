@@ -37,9 +37,10 @@ import java.util.Vector;
 
 public class theMenteeInfoActivity extends AppCompatActivity {
     String uid;
-    List<String> listGroup;
+    public static List<String> listGroup;
     HashMap<String, List<String>> listItem;
-    MainAdapter adapter;
+    public static MainAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
