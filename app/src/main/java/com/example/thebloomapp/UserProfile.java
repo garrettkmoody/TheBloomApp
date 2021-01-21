@@ -3,6 +3,9 @@ package com.example.thebloomapp;
 
 import android.widget.ScrollView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class UserProfile {
@@ -14,6 +17,7 @@ public class UserProfile {
     private String dob;
     private String establishment;
     private String service;
+    private List<String> goals;
 
 
     public UserProfile() {
@@ -41,6 +45,10 @@ public class UserProfile {
 
     public void setService(String service) { this.service = service; }
 
+    public void setGoals(List<String> goals) { this.goals = goals; }
+
+    public void addGoal(String goal) { goals.add(goal); }
+
     public String getName() {
         return name;
     }
@@ -62,6 +70,8 @@ public class UserProfile {
     public String getEstablishment() { return establishment; }
 
     public String getService() { return service; }
+
+    public List<String> getGoals() { return goals; }
 
     public UserProfile(String Name, String Email, String Age, String Link) {
         this.name = Name;

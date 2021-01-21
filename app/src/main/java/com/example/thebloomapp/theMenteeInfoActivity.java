@@ -55,17 +55,20 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         final EditText establishment = findViewById(R.id.etEstablish);
         final Spinner services = findViewById(R.id.serviceSpin);
         final TextView establishmentTV = findViewById(R.id.hiddenTV);
+        Button saveGoal = findViewById(R.id.addGoalbt);
+        final EditText goalET = findViewById(R.id.etAddGoal);
         ExpandableListView expandableListView = findViewById(R.id.expandListView);
         listGroup = new ArrayList<>();
         listItem = new HashMap<>();
         adapter = new MainAdapter(this,listGroup,listItem);
         expandableListView.setAdapter(adapter);
-        initListData();
         Button saveInfo = findViewById(R.id.saveMenteeInfoBT);
         final Button editInfo = findViewById(R.id.pencilBT);
         editInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                adapter.toggleDeletes();
+                adapter.notifyDataSetChanged();
                 Animation shake = AnimationUtils.loadAnimation(editInfo.getContext(), R.anim.fade);
                 editInfo.startAnimation(shake);
                 if(establishment.getVisibility() == EditText.INVISIBLE) {
@@ -78,14 +81,29 @@ public class theMenteeInfoActivity extends AppCompatActivity {
             }
         });
 
+        saveGoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(goalET.getText().toString().trim().equals("")) {
+                    Toast.makeText(theMenteeInfoActivity.this, "Please enter a Goal", Toast.LENGTH_SHORT).show();
+                } else {
+                    listGroup.add(goalET.getText().toString());
+                    goalET.setText(null);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
         saveInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = firebaseDatabase.getReference(uid);
                 Map<String, Object> update = new HashMap<>();
+                List<String> goals = listGroup;
                 update.put("establishment", establishment.getText().toString().trim());
                 update.put("service", services.getSelectedItem());
+                update.put("goals", goals);
                 myRef.updateChildren(update);
             }
         });
@@ -105,6 +123,13 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                     name.setText(tempProfile.getName());
                     establishment.setText(tempProfile.getEstablishment());
                     establishmentTV.setText(tempProfile.getEstablishment());
+                    if(tempProfile.getGoals() != null) {
+                        List<String> hold = (List<String>) tempProfile.getGoals();
+                        for (String temp : hold) {
+                            listGroup.add(temp);
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
                     String[] serviceArr = getResources().getStringArray(R.array.services);
                     for(int i = 0;  i < serviceArr.length; i++) {
                         if(serviceArr[i].equals(tempProfile.getService())) {
@@ -121,52 +146,5 @@ public class theMenteeInfoActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-
-    private void initListData() {
-        listGroup.add(getString(R.string.goal1));
-        listGroup.add(getString(R.string.goal2));
-        listGroup.add(getString(R.string.goal3));
-        listGroup.add(getString(R.string.goal4));
-        listGroup.add(getString(R.string.goal5));
-
-        String[] array;
-        List<String> list1 = new ArrayList<>();
-        array = getResources().getStringArray(R.array.goal1);
-        for(String item : array) {
-            list1.add(item);
-        }
-
-        List<String> list2 = new ArrayList<>();
-        array = getResources().getStringArray(R.array.goal2);
-        for(String item : array) {
-            list2.add(item);
-        }
-
-        List<String> list3 = new ArrayList<>();
-        array = getResources().getStringArray(R.array.goal3);
-        for(String item : array) {
-            list3.add(item);
-        }
-
-        List<String> list4 = new ArrayList<>();
-        array = getResources().getStringArray(R.array.goal4);
-        for(String item : array) {
-            list4.add(item);
-        }
-
-        List<String> list5 = new ArrayList<>();
-        array = getResources().getStringArray(R.array.goal5);
-        for(String item : array) {
-            list5.add(item);
-        }
-
-        listItem.put(listGroup.get(0), list1);
-        listItem.put(listGroup.get(1), list2);
-        listItem.put(listGroup.get(2), list3);
-        listItem.put(listGroup.get(3), list4);
-        listItem.put(listGroup.get(4), list5);
-        adapter.notifyDataSetChanged();
     }
 }

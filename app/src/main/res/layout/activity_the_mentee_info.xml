@@ -77,10 +77,10 @@
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:text="Goals"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.202"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/coachEt" />
 
@@ -110,9 +110,9 @@
 
         <ExpandableListView
             android:id="@+id/expandListView"
-            android:layout_width="173dp"
-            android:layout_height="173dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="281dp"
+            android:layout_height="175dp"
+            android:layout_marginTop="8dp"
             android:nestedScrollingEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -153,5 +153,29 @@
             app:layout_constraintEnd_toStartOf="@+id/serviceSpin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <EditText
+            android:id="@+id/etAddGoal"
+            android:layout_width="142dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Enter Goal"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.248"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/expandListView" />
+
+        <Button
+            android:id="@+id/addGoalbt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Add Goal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.289"
+            app:layout_constraintStart_toEndOf="@+id/etAddGoal"
+            app:layout_constraintTop_toBottomOf="@+id/expandListView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

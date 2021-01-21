@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -15,6 +16,7 @@ public class MainAdapter extends BaseExpandableListAdapter {
     Context context;
     List<String> listGroup;
     HashMap<String, List<String>> listItem;
+    Boolean delete = false;
 
     public MainAdapter(Context context, List<String> listGroup, HashMap<String, List<String>> listItem) {
         this.context = context;
@@ -28,6 +30,9 @@ public class MainAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
+        if(this.listItem.get(this.listGroup.get(groupPosition)) == null) {
+            return 0;
+        }
         return this.listItem.get(this.listGroup.get(groupPosition)).size();
     }
 
@@ -63,6 +68,11 @@ public class MainAdapter extends BaseExpandableListAdapter {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.list_group, null);
         }
+        if(!delete) {
+            convertView.findViewById(R.id.deleteBT).setVisibility(Button.INVISIBLE);
+        } else {
+            convertView.findViewById(R.id.deleteBT).setVisibility(Button.VISIBLE);
+        }
         TextView textView = convertView.findViewById(R.id.list_parent);
         textView.setText(group);
         return convertView;
@@ -70,13 +80,16 @@ public class MainAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        String child = (String) getChild(groupPosition,childPosition);
+
         if(convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.list_item, null);
         }
 
         TextView textView = convertView.findViewById(R.id.list_child);
+
+
+        String child = (String) getChild(groupPosition, childPosition);
         textView.setText(child);
 
         return convertView;
@@ -85,5 +98,13 @@ public class MainAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    public void toggleDeletes() {
+        if(delete == false) {
+            delete = true;
+        } else {
+            delete = false;
+        }
     }
 }
