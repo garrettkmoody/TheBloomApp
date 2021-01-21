@@ -16,14 +16,14 @@
             android:id="@+id/coachEt"
             android:layout_width="146dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Coach Name"
-            android:layout_marginTop="8dp"
             android:inputType="textPersonName"
             android:textSize="12dp"
-            android:layout_marginLeft="0dp"
-            app:layout_constraintHorizontal_bias="0.328"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.328"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -77,8 +77,8 @@
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Goals"
             android:layout_marginTop="20dp"
+            android:text="Goals"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.202"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,10 +101,10 @@
             android:layout_marginLeft="84dp"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:visibility="invisible"
             android:hint="School/Establishment"
             android:inputType="textPersonName"
             android:textSize="12dp"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -112,8 +112,8 @@
             android:id="@+id/expandListView"
             android:layout_width="173dp"
             android:layout_height="173dp"
-            android:nestedScrollingEnabled="true"
             android:layout_marginTop="24dp"
+            android:nestedScrollingEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView15" />
@@ -130,14 +130,14 @@
 
         <Button
             android:id="@+id/pencilBT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="212dp"
-            android:text="Edit"
+            android:layout_width="40dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/pencil"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.879"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toEndOf="@+id/menteeInfoName"
+            app:layout_constraintTop_toBottomOf="@+id/menteeProfile" />
 
         <TextView
             android:id="@+id/hiddenTV"
@@ -146,9 +146,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
-            android:scrollHorizontally="true"
             android:ellipsize="end"
             android:maxLines="1"
+            android:scrollHorizontally="true"
             android:text="None Provided"
             app:layout_constraintEnd_toStartOf="@+id/serviceSpin"
             app:layout_constraintStart_toStartOf="parent"

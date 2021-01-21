@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,10 +62,12 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         expandableListView.setAdapter(adapter);
         initListData();
         Button saveInfo = findViewById(R.id.saveMenteeInfoBT);
-        Button editInfo = findViewById(R.id.pencilBT);
+        final Button editInfo = findViewById(R.id.pencilBT);
         editInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Animation shake = AnimationUtils.loadAnimation(editInfo.getContext(), R.anim.fade);
+                editInfo.startAnimation(shake);
                 if(establishment.getVisibility() == EditText.INVISIBLE) {
                     establishmentTV.setVisibility(TextView.INVISIBLE);
                     establishment.setVisibility(EditText.VISIBLE);
