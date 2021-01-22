@@ -22,7 +22,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -133,6 +136,8 @@ public class RegistrationActivity extends AppCompatActivity {
                         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
                         UserProfile tempUser = new UserProfile();
+                        List<String> scores = new ArrayList<>(Collections.nCopies(5,""));
+                        tempUser.setScores(scores);
                         tempUser.setEmail(userEmail.getText().toString().trim());
                         tempUser.setUid(firebaseAuth.getUid());
                         tempUser.setDob(dateOfBirth.getText().toString().trim());

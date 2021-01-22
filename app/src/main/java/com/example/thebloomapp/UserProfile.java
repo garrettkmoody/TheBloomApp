@@ -18,7 +18,7 @@ public class UserProfile {
     private String establishment;
     private String service;
     private List<String> goals;
-
+    private List<String> scores;
 
     public UserProfile() {
     }
@@ -47,7 +47,7 @@ public class UserProfile {
 
     public void setGoals(List<String> goals) { this.goals = goals; }
 
-    public void addGoal(String goal) { goals.add(goal); }
+    public void setScores(List<String> scores) { this.scores = scores; }
 
     public String getName() {
         return name;
@@ -72,6 +72,8 @@ public class UserProfile {
     public String getService() { return service; }
 
     public List<String> getGoals() { return goals; }
+
+    public List<String> getScores() { return scores; }
 
     public UserProfile(String Name, String Email, String Age, String Link) {
         this.name = Name;
