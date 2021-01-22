@@ -187,6 +187,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                     name.setText(tempProfile.getName());
                     establishment.setText(tempProfile.getEstablishment());
                     establishmentTV.setText(tempProfile.getEstablishment());
+
                     if(tempProfile.getScores() != null) {
                         List<String> hold = tempProfile.getScores();
                         testScores.clear();
@@ -194,6 +195,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                             testScores.add(temp);
                         }
                     }
+
                     if(tempProfile.getGoals() != null) {
                         List<String> hold = (List<String>) tempProfile.getGoals();
                         listGroup.clear();
@@ -201,6 +203,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                             listGroup.add(temp);
                         }
                     }
+
                     String[] serviceArr = getResources().getStringArray(R.array.services);
                     for(int i = 0;  i < serviceArr.length; i++) {
                         if(serviceArr[i].equals(tempProfile.getService())) {
