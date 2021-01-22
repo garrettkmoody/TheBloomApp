@@ -80,7 +80,9 @@ public class MainAdapter extends BaseExpandableListAdapter {
         convertView.findViewById(R.id.deleteBT).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                theMenteeInfoActivity.listGroup.remove(groupPosition);
+                if(theMenteeInfoActivity.listGroup.size() > groupPosition) {
+                    theMenteeInfoActivity.listGroup.remove(groupPosition);
+                }
                 Animation shake = AnimationUtils.loadAnimation(finalConvertView.getContext(), R.anim.fade);
                 finalConvertView.startAnimation(shake);
                 shake.setAnimationListener(new Animation.AnimationListener() {

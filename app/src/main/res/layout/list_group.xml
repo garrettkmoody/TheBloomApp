@@ -10,7 +10,7 @@
         android:id="@+id/list_parent"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/colorAccent"
+        android:textColor="#105FB1"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
 
     <Button

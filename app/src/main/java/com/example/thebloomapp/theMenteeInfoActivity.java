@@ -126,6 +126,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                     establishmentTV.setText(tempProfile.getEstablishment());
                     if(tempProfile.getGoals() != null) {
                         List<String> hold = (List<String>) tempProfile.getGoals();
+                        listGroup.clear();
                         for (String temp : hold) {
                             listGroup.add(temp);
                         }
