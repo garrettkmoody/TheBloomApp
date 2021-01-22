@@ -55,6 +55,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         final TextView name = findViewById(R.id.menteeInfoName);
         final EditText establishment = findViewById(R.id.etEstablish);
         final Spinner services = findViewById(R.id.serviceSpin);
+        Spinner tests = findViewById(R.id.testSPIN);
         final TextView establishmentTV = findViewById(R.id.hiddenTV);
         Button saveGoal = findViewById(R.id.addGoalbt);
         final EditText goalET = findViewById(R.id.etAddGoal);
@@ -109,6 +110,9 @@ public class theMenteeInfoActivity extends AppCompatActivity {
             }
         });
 
+        ArrayAdapter<CharSequence> testAdapter = ArrayAdapter.createFromResource(this, R.array.tests, R.layout.spinner_item);
+        testAdapter.setDropDownViewResource(R.layout.inspinner);
+        tests.setAdapter(testAdapter);
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.services, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.inspinner);
         services.setAdapter(adapter);
