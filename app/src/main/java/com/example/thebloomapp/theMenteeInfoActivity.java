@@ -70,9 +70,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         ExpandableListView expandableListView = findViewById(R.id.expandListView);
         listGroup = new ArrayList<>();
         final List<String> testScores = new ArrayList<>();
-        for(int i = 0;i<5;i++) {
-            testScores.add("");
-        }
+
         listItem = new HashMap<>();
         adapter = new MainAdapter(this,listGroup,listItem);
         expandableListView.setAdapter(adapter);
@@ -189,7 +187,6 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                     name.setText(tempProfile.getName());
                     establishment.setText(tempProfile.getEstablishment());
                     establishmentTV.setText(tempProfile.getEstablishment());
-                    System.out.println(tests.getSelectedItem().toString());
                     if(tempProfile.getScores() != null) {
                         List<String> hold = tempProfile.getScores();
                         testScores.clear();
@@ -204,7 +201,6 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                             listGroup.add(temp);
                         }
                     }
-                    adapter.notifyDataSetChanged();
                     String[] serviceArr = getResources().getStringArray(R.array.services);
                     for(int i = 0;  i < serviceArr.length; i++) {
                         if(serviceArr[i].equals(tempProfile.getService())) {
