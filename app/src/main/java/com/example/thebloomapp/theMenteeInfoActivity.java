@@ -48,6 +48,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
     public static List<String> listGroup;
     HashMap<String, List<String>> listItem;
     public static MainAdapter adapter;
+    Boolean ISCOACH = false;
 
 
     @Override
@@ -66,7 +67,9 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         final Spinner tests = findViewById(R.id.testSPIN);
         final EditText scoreET = findViewById(R.id.addScoreET);
         final TextView establishmentTV = findViewById(R.id.hiddenTV);
-        Button saveGoal = findViewById(R.id.addGoalbt);
+        final Button saveGoal = findViewById(R.id.addGoalbt);
+        final TextView notesTV = findViewById(R.id.notesTV);
+        final TextView serviceTV = findViewById(R.id.serviceTV);
         final EditText noteTextArea = findViewById(R.id.noteTA);
         final EditText coachET = findViewById(R.id.coachEt);
         final EditText goalET = findViewById(R.id.etAddGoal);
@@ -146,12 +149,14 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                 Animation shake = AnimationUtils.loadAnimation(editInfo.getContext(), R.anim.fade);
                 editInfo.startAnimation(shake);
                 if(establishment.getVisibility() == EditText.INVISIBLE) {
+                    if(ISCOACH) {
+                        noteTextArea.setEnabled(true);
+                        scoreET.setEnabled(true);
+                        goalET.setEnabled(true);
+                        coachET.setEnabled(true);
+                    }
                     establishmentTV.setVisibility(TextView.INVISIBLE);
                     establishment.setVisibility(EditText.VISIBLE);
-                    noteTextArea.setEnabled(true);
-                    scoreET.setEnabled(true);
-                    goalET.setEnabled(true);
-                    coachET.setEnabled(true);
                 } else {
                     establishmentTV.setVisibility(TextView.VISIBLE);
                     establishment.setVisibility(EditText.INVISIBLE);
@@ -184,12 +189,14 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                 Map<String, Object> update = new HashMap<>();
                 List<String> goals = listGroup;
                 List<String> scores = testScores;
+                if(ISCOACH) {
+                    update.put("service", services.getSelectedItem());
+                    update.put("goals", goals);
+                    update.put("scores", scores);
+                    update.put("coach", coachET.getText().toString().trim());
+                    update.put("notes", noteTextArea.getText().toString());
+                }
                 update.put("establishment", establishment.getText().toString().trim());
-                update.put("service", services.getSelectedItem());
-                update.put("notes", noteTextArea.getText().toString());
-                update.put("goals", goals);
-                update.put("scores", scores);
-                update.put("coach", coachET.getText().toString().trim());
                 myRef.updateChildren(update);
             }
         });
@@ -214,6 +221,15 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                     establishmentTV.setText(tempProfile.getEstablishment());
                     noteTextArea.setText(tempProfile.getNotes());
                     coachET.setText(tempProfile.getCoach());
+                    ISCOACH = tempProfile.getIsacoach();
+                    if(ISCOACH) {
+                        services.setVisibility(Spinner.VISIBLE);
+                        serviceTV.setVisibility(TextView.VISIBLE);
+                        notesTV.setVisibility(TextView.VISIBLE);
+                        noteTextArea.setVisibility(EditText.VISIBLE);
+                        goalET.setVisibility(EditText.VISIBLE);
+                        saveGoal.setVisibility(Button.VISIBLE);
+                    }
                     if(tempProfile.getScores() != null) {
                         List<String> hold = tempProfile.getScores();
                         testScores.clear();
