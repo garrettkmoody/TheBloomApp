@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e4f2f7"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="0dp">
 
@@ -19,6 +20,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
             android:ems="10"
+            android:enabled="false"
             android:hint="Coach Name"
             android:inputType="textPersonName"
             android:textSize="12dp"
@@ -55,10 +57,12 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             android:text="Service"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.205"
+            app:layout_constraintHorizontal_bias="0.819"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menteeInfoName" />
 
@@ -68,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Coach"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.205"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Goals"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,11 +115,11 @@
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
         <ExpandableListView
-            android:background="@drawable/expandableback"
             android:id="@+id/expandListView"
             android:layout_width="281dp"
             android:layout_height="175dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/expandableback"
             android:nestedScrollingEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -123,11 +129,14 @@
             android:id="@+id/saveMenteeInfoBT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="640dp"
-            android:text="Button"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/buttonforbloom"
+            android:text="Save Info"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+            app:layout_constraintTop_toBottomOf="@+id/noteTA" />
 
         <Button
             android:id="@+id/pencilBT"
@@ -144,14 +153,14 @@
             android:id="@+id/hiddenTV"
             android:layout_width="125dp"
             android:layout_height="25dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="16dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:scrollHorizontally="true"
             android:text="None Provided"
             app:layout_constraintEnd_toStartOf="@+id/serviceSpin"
+            app:layout_constraintHorizontal_bias="0.588"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -162,6 +171,7 @@
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="Enter Goal"
+            android:enabled="false"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.248"
@@ -174,6 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Add Goal"
+            android:background="@drawable/buttonforbloom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.289"
             app:layout_constraintStart_toEndOf="@+id/etAddGoal"
@@ -196,6 +207,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Test Scores"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
@@ -217,10 +229,56 @@
             android:layout_marginTop="40dp"
             android:ems="10"
             android:hint="Enter Score"
+            android:enabled="false"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/testSPIN"
             app:layout_constraintHorizontal_bias="0.678"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <EditText
+            android:id="@+id/noteTA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/expandableback"
+            android:gravity="top|left"
+            android:hint="Enter notes here..."
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:enabled="false"
+            app:layout_constraintTop_toBottomOf="@id/textView10"
+            android:layout_marginTop="20dp"
+            android:nestedScrollingEnabled="true"
+            android:overScrollMode="always"
+            android:padding="5dp"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="926dp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Notes"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addScoreET" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginRight="50dp"
+            android:text="Establishment"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menteeInfoName" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

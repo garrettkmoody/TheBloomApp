@@ -17,6 +17,9 @@ public class UserProfile {
     private String dob;
     private String establishment;
     private String service;
+    private String notes;
+    private String coach;
+    private boolean isacoach;
     private List<String> goals;
     private List<String> scores;
 
@@ -49,6 +52,12 @@ public class UserProfile {
 
     public void setScores(List<String> scores) { this.scores = scores; }
 
+    public void setNotes(String notes) { this.notes = notes; }
+
+    public void setCoach(String coach) { this.coach = coach; }
+
+    public void setIsacoach(boolean isacoach) { this.isacoach = isacoach; }
+
     public String getName() {
         return name;
     }
@@ -74,6 +83,12 @@ public class UserProfile {
     public List<String> getGoals() { return goals; }
 
     public List<String> getScores() { return scores; }
+
+    public String getNotes() { return notes; }
+
+    public String getCoach() { return coach; }
+
+    public boolean getIsacoach() { return isacoach; }
 
     public UserProfile(String Name, String Email, String Age, String Link) {
         this.name = Name;

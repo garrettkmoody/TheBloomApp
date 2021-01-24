@@ -141,6 +141,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         tempUser.setEmail(userEmail.getText().toString().trim());
                         tempUser.setUid(firebaseAuth.getUid());
                         tempUser.setDob(dateOfBirth.getText().toString().trim());
+                        tempUser.setIsacoach(false);
                         myRef.setValue(tempUser);
                         firebaseAuth.signOut();
                         finish();

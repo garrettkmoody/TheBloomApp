@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -66,6 +67,8 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         final EditText scoreET = findViewById(R.id.addScoreET);
         final TextView establishmentTV = findViewById(R.id.hiddenTV);
         Button saveGoal = findViewById(R.id.addGoalbt);
+        final EditText noteTextArea = findViewById(R.id.noteTA);
+        final EditText coachET = findViewById(R.id.coachEt);
         final EditText goalET = findViewById(R.id.etAddGoal);
         ExpandableListView expandableListView = findViewById(R.id.expandListView);
         listGroup = new ArrayList<>();
@@ -76,6 +79,18 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         expandableListView.setAdapter(adapter);
         Button saveInfo = findViewById(R.id.saveMenteeInfoBT);
 
+        noteTextArea.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                switch (event.getAction() & MotionEvent.ACTION_MASK){
+                    case MotionEvent.ACTION_UP:
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+                return false;
+            }
+        });
 
         tests.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -133,9 +148,17 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                 if(establishment.getVisibility() == EditText.INVISIBLE) {
                     establishmentTV.setVisibility(TextView.INVISIBLE);
                     establishment.setVisibility(EditText.VISIBLE);
+                    noteTextArea.setEnabled(true);
+                    scoreET.setEnabled(true);
+                    goalET.setEnabled(true);
+                    coachET.setEnabled(true);
                 } else {
                     establishmentTV.setVisibility(TextView.VISIBLE);
                     establishment.setVisibility(EditText.INVISIBLE);
+                    noteTextArea.setEnabled(false);
+                    scoreET.setEnabled(false);
+                    goalET.setEnabled(false);
+                    coachET.setEnabled(false);
                 }
             }
         });
@@ -163,8 +186,10 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                 List<String> scores = testScores;
                 update.put("establishment", establishment.getText().toString().trim());
                 update.put("service", services.getSelectedItem());
+                update.put("notes", noteTextArea.getText().toString());
                 update.put("goals", goals);
                 update.put("scores", scores);
+                update.put("coach", coachET.getText().toString().trim());
                 myRef.updateChildren(update);
             }
         });
@@ -187,7 +212,8 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                     name.setText(tempProfile.getName());
                     establishment.setText(tempProfile.getEstablishment());
                     establishmentTV.setText(tempProfile.getEstablishment());
-
+                    noteTextArea.setText(tempProfile.getNotes());
+                    coachET.setText(tempProfile.getCoach());
                     if(tempProfile.getScores() != null) {
                         List<String> hold = tempProfile.getScores();
                         testScores.clear();

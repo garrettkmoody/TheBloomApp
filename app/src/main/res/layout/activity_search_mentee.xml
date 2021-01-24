@@ -48,12 +48,15 @@
         app:layout_constraintTop_toBottomOf="@+id/etSearchMentee"
         app:layout_constraintVertical_bias="0.13" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnSearchMentee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="27dp"
         android:text="Search"
+        android:scaleType="fitCenter"
+        android:src="@drawable/search"
+        android:background="@drawable/buttonforbloom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toEndOf="@+id/etSearchMentee"
