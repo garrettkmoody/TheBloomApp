@@ -26,6 +26,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -209,7 +210,13 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         services.setAdapter(adapter);
 
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference(uid);
+        DatabaseReference databaseReference;
+        if(uid != null) {
+            databaseReference = firebaseDatabase.getReference(uid);
+        } else {
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+        }
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -222,6 +229,9 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                     noteTextArea.setText(tempProfile.getNotes());
                     coachET.setText(tempProfile.getCoach());
                     ISCOACH = tempProfile.getIsacoach();
+                    if(ISCOACH == null) {
+                        ISCOACH = false;
+                    }
                     if(ISCOACH) {
                         services.setVisibility(Spinner.VISIBLE);
                         serviceTV.setVisibility(TextView.VISIBLE);
