@@ -50,6 +50,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
     HashMap<String, List<String>> listItem;
     public static MainAdapter adapter;
     Boolean ISCOACH = false;
+    int testPosition;
 
 
     @Override
@@ -105,6 +106,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     scoreET.setText(testScores.get(position));
+                    testPosition = position;
                 }
 
                 @Override
@@ -245,7 +247,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                     establishmentTV.setText(tempProfile.getEstablishment());
                     noteTextArea.setText(tempProfile.getNotes());
                     coachET.setText(tempProfile.getCoach());
-                    scoreET.setText(tempProfile.getScores().get(0));
+                    scoreET.setText(tempProfile.getScores().get(testPosition));
                     if(ISCOACH) {
                         services.setVisibility(Spinner.VISIBLE);
                         serviceTV.setVisibility(TextView.VISIBLE);
