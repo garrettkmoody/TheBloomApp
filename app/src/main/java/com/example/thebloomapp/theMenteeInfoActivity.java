@@ -61,6 +61,11 @@ public class theMenteeInfoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         uid = intent.getStringExtra("uid");
+        if(uid == null) {
+            ISCOACH = false;
+        } else {
+            ISCOACH = true;
+        }
         final ImageView profile = findViewById(R.id.menteeProfile);
         final TextView name = findViewById(R.id.menteeInfoName);
         final EditText establishment = findViewById(R.id.etEstablish);
@@ -76,10 +81,10 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         final EditText goalET = findViewById(R.id.etAddGoal);
         ExpandableListView expandableListView = findViewById(R.id.expandListView);
         listGroup = new ArrayList<>();
-        final List<String> testScores = new ArrayList<>();
-
+        final List<String> testScores = new ArrayList<>(Collections.nCopies(5,""));
         listItem = new HashMap<>();
         adapter = new MainAdapter(this,listGroup,listItem);
+        System.out.println("Hey there");
         expandableListView.setAdapter(adapter);
         Button saveInfo = findViewById(R.id.saveMenteeInfoBT);
 
@@ -96,17 +101,19 @@ public class theMenteeInfoActivity extends AppCompatActivity {
             }
         });
 
-        tests.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                scoreET.setText(testScores.get(position));
-            }
+            tests.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    scoreET.setText(testScores.get(position));
+                }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
+                }
+            });
+
+
         scoreET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -186,7 +193,14 @@ public class theMenteeInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = firebaseDatabase.getReference(uid);
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                DatabaseReference myRef;
+                if(!ISCOACH) {
+                    myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
+                } else {
+                    myRef = firebaseDatabase.getReference(uid);
+                }
+
                 Map<String, Object> update = new HashMap<>();
                 List<String> goals = listGroup;
                 List<String> scores = testScores;
@@ -205,33 +219,33 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         final ArrayAdapter<CharSequence> testAdapter = ArrayAdapter.createFromResource(this, R.array.tests, R.layout.spinner_item);
         testAdapter.setDropDownViewResource(R.layout.inspinner);
         tests.setAdapter(testAdapter);
-        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.services, R.layout.spinner_item);
-        adapter.setDropDownViewResource(R.layout.inspinner);
-        services.setAdapter(adapter);
+        final ArrayAdapter<CharSequence> adapterSpin = ArrayAdapter.createFromResource(this, R.array.services, R.layout.spinner_item);
+        adapterSpin.setDropDownViewResource(R.layout.inspinner);
+        services.setAdapter(adapterSpin);
 
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         DatabaseReference databaseReference;
-        if(uid != null) {
-            databaseReference = firebaseDatabase.getReference(uid);
-        } else {
-            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        if(!ISCOACH) {
             databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+        } else {
+            databaseReference = firebaseDatabase.getReference(uid);
         }
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     UserProfile tempProfile = snapshot.getValue(UserProfile.class);
-                    Picasso.get().load(tempProfile.getLink()).fit().centerCrop().transform(new CircleTransform()).into(profile);
+                    if(tempProfile.getLink() != null) {
+                        Picasso.get().load(tempProfile.getLink()).fit().centerCrop().transform(new CircleTransform()).into(profile);
+                    }
                     name.setText(tempProfile.getName());
                     establishment.setText(tempProfile.getEstablishment());
                     establishmentTV.setText(tempProfile.getEstablishment());
                     noteTextArea.setText(tempProfile.getNotes());
                     coachET.setText(tempProfile.getCoach());
-                    ISCOACH = tempProfile.getIsacoach();
-                    if(ISCOACH == null) {
-                        ISCOACH = false;
-                    }
+                    scoreET.setText(tempProfile.getScores().get(0));
                     if(ISCOACH) {
                         services.setVisibility(Spinner.VISIBLE);
                         serviceTV.setVisibility(TextView.VISIBLE);
@@ -246,6 +260,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                         for(String temp : hold) {
                             testScores.add(temp);
                         }
+                        System.out.println(testScores.get(0));
                     }
 
                     if(tempProfile.getGoals() != null) {
@@ -264,6 +279,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                         }
                     }
                 }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
