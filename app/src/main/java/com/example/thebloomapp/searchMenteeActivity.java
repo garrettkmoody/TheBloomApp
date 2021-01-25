@@ -71,7 +71,7 @@ public class searchMenteeActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull UsersViewHolder holder, int position, @NonNull final UserProfile model) {
 
-                holder.setDetails(model.getName(), model.getEmail(), model.getLink());
+                holder.setDetails(model.getName(), model.getEmail(), model.getLink(), model.getDob());
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -105,15 +105,17 @@ public class searchMenteeActivity extends AppCompatActivity {
             mView = itemView;
         }
 
-        public void setDetails(String userName, String bio, String img) {
+        public void setDetails(String userName, String bio, String img, String dobfromd) {
 
             TextView user_name = mView.findViewById(R.id.tvListName);
             TextView user_bio = mView.findViewById(R.id.tvBio);
             ImageView profilePic = mView.findViewById(R.id.ivProfilePic);
+            TextView dob = mView.findViewById(R.id.tvDobSearch);
             profilePic.setImageResource(0);
             profilePic.setImageDrawable(getResources().getDrawable(R.drawable.mentee));
             user_name.setText(userName);
             user_bio.setText(bio);
+            dob.setText(dobfromd);
             if(img != null && !img.equals("")) {
             Picasso.get().load(img).fit().centerCrop().transform(new CircleTransform()).into(profilePic); }
         }

@@ -29,6 +29,16 @@
         android:text="Bob Ross"
         android:textSize="20sp"
         android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tvDobSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="08/12/02"
+        android:layout_toRightOf="@id/ivProfilePic"
+        android:layout_alignBottom="@id/tvListName"
+        android:layout_toEndOf="@id/ivProfilePic"
+        android:layout_marginLeft="17dp"
+        android:layout_marginBottom="-25dp"/>
 
     <TextView
         android:id="@+id/tvBio"

@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements CoachDialog.Coach
         Animation shake = AnimationUtils.loadAnimation(button.getContext(), R.anim.fade);
         button.startAnimation(shake);
         if(ISCOACH) {
-            Intent intent = new Intent(MainActivity.this, getMenteeActivity.class);
+            Intent intent = new Intent(MainActivity.this, addMockUser.class);
             startActivity(intent);
         } else {
             Intent intent = new Intent(MainActivity.this, theMenteeInfoActivity.class);
