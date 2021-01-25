@@ -6,6 +6,7 @@
     <string name="goal3">goal 3</string>
     <string name="goal4">goal 4</string>
     <string name="goal5">goal 5</string>
+    <string name="changeCoach"><u>Not a mentee?</u></string>
 
     <string-array name="goal1">
         <item>item1</item>
