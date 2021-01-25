@@ -1,4 +1,4 @@
-package com.example.thebloomapp;
+package com.moody.thebloomapp;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

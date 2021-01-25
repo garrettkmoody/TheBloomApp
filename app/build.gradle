@@ -6,7 +6,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.thebloomapp"
+        applicationId "com.moody.thebloomapp"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1

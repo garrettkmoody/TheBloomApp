@@ -1,12 +1,7 @@
-package com.example.thebloomapp;
+package com.moody.thebloomapp;
 
 
-import android.widget.ScrollView;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 public class UserProfile {
     private String name;
