@@ -81,7 +81,6 @@ public class theMenteeInfoActivity extends AppCompatActivity {
         final List<String> testScores = new ArrayList<>(Collections.nCopies(5,""));
         listItem = new HashMap<>();
         adapter = new MainAdapter(this,listGroup,listItem);
-        System.out.println("Hey there");
         expandableListView.setAdapter(adapter);
         Button saveInfo = findViewById(R.id.saveMenteeInfoBT);
 
@@ -258,7 +257,6 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                         for(String temp : hold) {
                             testScores.add(temp);
                         }
-                        System.out.println(testScores.get(0));
                     }
 
                     if(tempProfile.getGoals() != null) {
