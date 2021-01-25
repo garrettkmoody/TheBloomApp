@@ -8,10 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class MenteeListAdapter extends ArrayAdapter<Mentee> {
 
@@ -39,7 +37,7 @@ public class MenteeListAdapter extends ArrayAdapter<Mentee> {
 
         TextView tvName = (TextView) convertView.findViewById(R.id.textView1);
         TextView tvYear = (TextView) convertView.findViewById(R.id.textView2);
-        TextView tvBirthday = (TextView) convertView.findViewById(R.id.textView3);
+        TextView tvBirthday = (TextView) convertView.findViewById(R.id.goaloraddtv);
 
         tvName.setText(name);
         tvYear.setText(year);

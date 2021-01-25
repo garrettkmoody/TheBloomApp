@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements CoachDialog.Coach
     private ImageButton button;
     private ImageButton button1;
     private TextView notMenteeTV;
+    private TextView goaloradd;
     private Button logoutbtn;
     private Button editProfile;
     private Boolean ISCOACH = false;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements CoachDialog.Coach
         });
         button = (ImageButton) findViewById(R.id.getMentees);
         notMenteeTV = (TextView) findViewById(R.id.becomeCoachTV);
+        goaloradd = (TextView) findViewById(R.id.goaloraddtv);
         editProfile = (Button) findViewById(R.id.btnEditProfile);
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements CoachDialog.Coach
                 if(userProfile.getIsacoach()) {
                     ISCOACH = true;
                     notMenteeTV.setVisibility(TextView.GONE);
+                    goaloradd.setText("Add Mentee");
                 }
             }
 
