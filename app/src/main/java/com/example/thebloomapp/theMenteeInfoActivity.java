@@ -62,11 +62,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         uid = intent.getStringExtra("uid");
-        if(uid == null) {
-            ISCOACH = false;
-        } else {
-            ISCOACH = true;
-        }
+        ISCOACH = uid != null;
         final ImageView profile = findViewById(R.id.menteeProfile);
         final TextView name = findViewById(R.id.menteeInfoName);
         final EditText establishment = findViewById(R.id.etEstablish);
@@ -266,7 +262,7 @@ public class theMenteeInfoActivity extends AppCompatActivity {
                     }
 
                     if(tempProfile.getGoals() != null) {
-                        List<String> hold = (List<String>) tempProfile.getGoals();
+                        List<String> hold = tempProfile.getGoals();
                         listGroup.clear();
                         for (String temp : hold) {
                             listGroup.add(temp);

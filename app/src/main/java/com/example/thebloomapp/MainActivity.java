@@ -50,17 +50,17 @@ public class MainActivity extends AppCompatActivity implements CoachDialog.Coach
         setContentView(R.layout.activity_main);
         getCoachData();
         firebaseAuth = FirebaseAuth.getInstance();
-        button1 = (ImageButton) findViewById(R.id.addMentee);
+        button1 = findViewById(R.id.addMentee);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openAddMenteeActivity();
             }
         });
-        button = (ImageButton) findViewById(R.id.getMentees);
-        notMenteeTV = (TextView) findViewById(R.id.becomeCoachTV);
-        goaloradd = (TextView) findViewById(R.id.goaloraddtv);
-        editProfile = (Button) findViewById(R.id.btnEditProfile);
+        button = findViewById(R.id.getMentees);
+        notMenteeTV = findViewById(R.id.becomeCoachTV);
+        goaloradd = findViewById(R.id.goaloraddtv);
+        editProfile = findViewById(R.id.btnEditProfile);
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements CoachDialog.Coach
                 openGetMenteeActivity();
             }
         });
-        logoutbtn = (Button) findViewById(R.id.btnlogout);
+        logoutbtn = findViewById(R.id.btnlogout);
         logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

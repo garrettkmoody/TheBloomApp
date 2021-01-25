@@ -15,7 +15,7 @@ public class MenteeListAdapter extends ArrayAdapter<Mentee> {
 
     private static final String TAG = "PersonListAdapter";
 
-    private Context mContext;
+    private final Context mContext;
     int mResource;
     public MenteeListAdapter(Context context, int resource, ArrayList<Mentee> objects) {
         super(context, resource, objects);
@@ -35,9 +35,9 @@ public class MenteeListAdapter extends ArrayAdapter<Mentee> {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent,false);
 
-        TextView tvName = (TextView) convertView.findViewById(R.id.textView1);
-        TextView tvYear = (TextView) convertView.findViewById(R.id.textView2);
-        TextView tvBirthday = (TextView) convertView.findViewById(R.id.goaloraddtv);
+        TextView tvName = convertView.findViewById(R.id.textView1);
+        TextView tvYear = convertView.findViewById(R.id.textView2);
+        TextView tvBirthday = convertView.findViewById(R.id.goaloraddtv);
 
         tvName.setText(name);
         tvYear.setText(year);

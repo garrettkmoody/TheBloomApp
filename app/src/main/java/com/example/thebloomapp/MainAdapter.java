@@ -134,10 +134,6 @@ public class MainAdapter extends BaseExpandableListAdapter {
     }
 
     public void toggleDeletes() {
-        if(delete == false) {
-            delete = true;
-        } else {
-            delete = false;
-        }
+        delete = delete == false;
     }
 }

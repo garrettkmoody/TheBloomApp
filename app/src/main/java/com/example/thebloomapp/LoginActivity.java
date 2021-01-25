@@ -33,11 +33,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        UserName = (EditText) findViewById(R.id.loginUserName);
-        Password = (EditText) findViewById(R.id.loginPassword);
-        Login = (Button) findViewById(R.id.btlogin);
-        NewUser = (TextView) findViewById(R.id.tvNewUser);
-        forgotPass = (TextView) findViewById(R.id.tvForgotPass);
+        UserName = findViewById(R.id.loginUserName);
+        Password = findViewById(R.id.loginPassword);
+        Login = findViewById(R.id.btlogin);
+        NewUser = findViewById(R.id.tvNewUser);
+        forgotPass = findViewById(R.id.tvForgotPass);
         firebaseAuth = FirebaseAuth.getInstance();
 
         FirebaseUser user = firebaseAuth.getCurrentUser();

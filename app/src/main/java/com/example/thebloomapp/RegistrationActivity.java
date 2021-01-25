@@ -43,12 +43,12 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         final Calendar myCalendar = Calendar.getInstance();
-        userName = (EditText) findViewById(R.id.etUsername);
-        userPassword = (EditText) findViewById(R.id.etPassword);
-        userEmail = (EditText) findViewById(R.id.etEmail);
-        register = (Button) findViewById(R.id.btnRegister);
-        haveAcc = (TextView) findViewById(R.id.tvHaveAcc);
-        dateOfBirth = (TextView) findViewById(R.id.tvDob);
+        userName = findViewById(R.id.etUsername);
+        userPassword = findViewById(R.id.etPassword);
+        userEmail = findViewById(R.id.etEmail);
+        register = findViewById(R.id.btnRegister);
+        haveAcc = findViewById(R.id.tvHaveAcc);
+        dateOfBirth = findViewById(R.id.tvDob);
         firebaseAuth = FirebaseAuth.getInstance();
 
 

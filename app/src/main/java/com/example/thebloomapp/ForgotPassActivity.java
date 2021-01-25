@@ -24,8 +24,8 @@ public class ForgotPassActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_pass);
 
-        passwordEmail = (EditText) findViewById(R.id.etPassEmail);
-        resetPass = (Button) findViewById(R.id.btnResetPass);
+        passwordEmail = findViewById(R.id.etPassEmail);
+        resetPass = findViewById(R.id.btnResetPass);
         firebaseAuth = FirebaseAuth.getInstance();
         resetPass.setOnClickListener(new View.OnClickListener() {
             @Override

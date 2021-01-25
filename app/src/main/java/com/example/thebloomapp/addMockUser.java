@@ -65,10 +65,6 @@ public class addMockUser extends AppCompatActivity {
     }
 
     private Boolean validate() {
-        if(nameET.getText().toString().isEmpty() || emailET.getText().toString().isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        return !nameET.getText().toString().isEmpty() && !emailET.getText().toString().isEmpty();
     }
 }

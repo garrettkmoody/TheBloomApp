@@ -85,7 +85,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
-    private static int PICK_IMAGE = 123;
+    private static final int PICK_IMAGE = 123;
     Uri imagePath;
     String profileLinker;
 
@@ -109,11 +109,11 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Name = (EditText) findViewById(R.id.etProfileName);
-        Email = (EditText) findViewById(R.id.etProfileEmail);
-        Age = (EditText) findViewById(R.id.etProfileAge);
-        profilePic = (ImageView) findViewById(R.id.profilePiciv);
-        saveProfile = (Button) findViewById(R.id.btnSaveProfile);
+        Name = findViewById(R.id.etProfileName);
+        Email = findViewById(R.id.etProfileEmail);
+        Age = findViewById(R.id.etProfileAge);
+        profilePic = findViewById(R.id.profilePiciv);
+        saveProfile = findViewById(R.id.btnSaveProfile);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
