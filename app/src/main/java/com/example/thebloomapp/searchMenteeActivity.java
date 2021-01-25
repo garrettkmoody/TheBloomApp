@@ -71,7 +71,7 @@ public class searchMenteeActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull UsersViewHolder holder, int position, @NonNull final UserProfile model) {
 
-                holder.setDetails(model.getName(), model.getAge(), model.getLink());
+                holder.setDetails(model.getName(), model.getEmail(), model.getLink());
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override

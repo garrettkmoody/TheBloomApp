@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements CoachDialog.Coach
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadData();
         getCoachData();
         firebaseAuth = FirebaseAuth.getInstance();
         button1 = (ImageButton) findViewById(R.id.addMentee);
@@ -106,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements CoachDialog.Coach
                 UserProfile userProfile = snapshot.getValue(UserProfile.class);
                 if(userProfile.getIsacoach()) {
                     ISCOACH = true;
+                    notMenteeTV.setVisibility(TextView.GONE);
                 }
             }
 
@@ -117,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements CoachDialog.Coach
     }
 
     public void openGetMenteeActivity() {
+        Animation shake = AnimationUtils.loadAnimation(button.getContext(), R.anim.fade);
+        button.startAnimation(shake);
         if(ISCOACH) {
             Intent intent = new Intent(MainActivity.this, getMenteeActivity.class);
             startActivity(intent);
@@ -127,6 +129,8 @@ public class MainActivity extends AppCompatActivity implements CoachDialog.Coach
     }
 
     public void openAddMenteeActivity() {
+        Animation shake = AnimationUtils.loadAnimation(button1.getContext(), R.anim.fade);
+        button1.startAnimation(shake);
         if(ISCOACH) {
             Intent intent = new Intent(this,searchMenteeActivity.class);
             startActivity(intent);
@@ -134,34 +138,6 @@ public class MainActivity extends AppCompatActivity implements CoachDialog.Coach
             Toast.makeText(MainActivity.this, "Must be a Coach to access Mentee Search", Toast.LENGTH_SHORT).show();
         }
 
-    }
-
-    public void taptofade(View view) {
-        ImageButton imageButton=(ImageButton) findViewById(R.id.addMentee);
-        Animation animation= AnimationUtils.loadAnimation( this, R.anim.fade);
-        imageButton.startAnimation(animation);
-
-    }
-
-    public void taptofade1(View view) {
-        ImageButton imageButton=(ImageButton) findViewById(R.id.getMentees);
-        Animation animation= AnimationUtils.loadAnimation( this, R.anim.fade);
-        imageButton.startAnimation(animation);
-
-    }
-    private void loadData() {
-        ArrayList<Mentee> tempArray;
-        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString("task list", null);
-        Type type = new TypeToken<ArrayList<Mentee>>() {}.getType();
-        tempArray = gson.fromJson(json, type);
-        if(tempArray == null) {
-            return;
-        }
-        for (int i = 0; i <tempArray.size(); i++) {
-            Singleton.getInstance().addToArray(tempArray.get(i));
-        }
     }
 
     @Override

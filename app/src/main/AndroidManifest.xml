@@ -22,7 +22,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".menteeInfoActivity" />
-        <activity android:name=".addMenteeActivity" />
         <activity android:name=".getMenteeActivity" />
         <activity android:name=".MainActivity" />
 
